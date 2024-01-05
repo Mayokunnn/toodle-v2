@@ -1,35 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Header from "./components/Header";
+import TaskList from "./components/TaskList";
+import TodoInput from "./components/TodoInput";
+import "./index.css";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="bg-contain contain bg-lightVeryLight bg-light-mode-mobile dark:bg-dark-mode-mobile md:dark:bg-dark-mode-desktop bg-no-repeat md:bg-light-mode-desktop font-josefin w-full  h-screen dark:bg-darkVeryBlue flex px-6 sm:px-16 py-12 sm:py-16">
+      <div className="w-full mx-auto max-w-xl">
+        <Header title="Todo" />
+        <div className="mt-7 sm:mt-8 md:mt-12 flex flex-col gap-6 ">
+          <TodoInput />
+          <TaskList />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
-
-export default App
