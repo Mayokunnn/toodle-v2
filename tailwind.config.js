@@ -13,10 +13,10 @@ export default {
     },
 
     backgroundImage: {
-      "light-mode-mobile": "url('./public/bg-mobile-light.jpg')",
-      "dark-mode-mobile": "url('./public/bg-mobile-dark.jpg')",
-      "light-mode-desktop": "url('./public/bg-desktop-light.jpg')",
-      "dark-mode-desktop": "url('./public/bg-desktop-dark.jpg')",
+      "light-mode-mobile": "url('/public/bg-mobile-light.jpg')",
+      "dark-mode-mobile": "url('/public/bg-mobile-dark.jpg')",
+      "light-mode-desktop": "url('/public/bg-desktop-light.jpg')",
+      "dark-mode-desktop": "url('/public/bg-desktop-dark.jpg')",
     },
     extend: {
       fontFamily: {
