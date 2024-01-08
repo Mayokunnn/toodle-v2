@@ -2,6 +2,7 @@ import { Reorder } from "framer-motion";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../store/taskSlice";
+import Checkbox from "./Checkbox";
 
 interface TaskType {
   taskName: string;
@@ -25,15 +26,7 @@ function TaskItem({ task }: taskProps) {
       value={task}
       className="cursor-pointer h-14 px-3 w-full rounded-sm  bg-lightVeryLight dark:bg-darkVeryDesaturatedBlue hover:bg-lightVeryGrayishBlue dark:hover:bg-darkVeryBlue flex items-center gap-4"
     >
-      <label htmlFor="checkbox" className="h-full items-center flex">
-        <input
-          type="checkbox"
-          name="checkbox"
-          className="inputcheck"
-          // checked={true}
-        />
-        <span className="customcheckbox cursor-pointer w-5 border bg-transparent rounded-full h-5 border-lightDarkGrayishBlue dark:border-darkLightGrayishBlue"></span>
-      </label>
+      <Checkbox task={task} />
       <div className="flex items-center justify-between w-full">
         <p
           className={`text-sm sm:text-md  ${
@@ -44,7 +37,7 @@ function TaskItem({ task }: taskProps) {
         >
           {task.taskName}
         </p>
-        {isHovered && task.id && (
+        {isHovered && (
           <span
             onClick={() => dispatch(deleteTask(task.id))}
             className="px-5 text-2xl text-lightVeryDarkGrayishBlue dark:text-darkLightGrayishBlue"
@@ -58,3 +51,4 @@ function TaskItem({ task }: taskProps) {
 }
 
 export default TaskItem;
+export type { TaskType };

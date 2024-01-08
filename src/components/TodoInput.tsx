@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTask } from "../store/taskSlice";
+import { addTask, setFilter } from "../store/taskSlice";
 
 function TodoInput() {
   const [taskName, setTaskName] = useState("");
@@ -13,6 +13,7 @@ function TodoInput() {
       id: crypto.randomUUID(),
     };
     dispatch(addTask(task));
+    dispatch(setFilter("all"));
     setTaskName("");
   }
 
@@ -25,6 +26,7 @@ function TodoInput() {
       id: crypto.randomUUID(),
     };
     dispatch(addTask(task));
+    dispatch(setFilter("all"));
     setTaskName("");
   }
 

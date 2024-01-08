@@ -9,9 +9,9 @@ export default {
   ],
   theme: {
     gradientColorStopPositions: {
-        33: "33%",
-      },
-      
+      33: "33%",
+    },
+
     backgroundImage: {
       "light-mode-mobile": "url('./public/bg-mobile-light.jpg')",
       "dark-mode-mobile": "url('./public/bg-mobile-dark.jpg')",
@@ -36,7 +36,7 @@ export default {
         darkGrayishBlue: "hsl(234, 11%, 52%)",
         darkVeryGrayishBlue: " hsl(233, 14%, 35%)",
 
-        brightBlue: " hsl(220, 98%, 61%)",
+        brightBlue: "hsl(220, 98%, 61%)",
         gradientFirst: "hsl(192, 100%, 67%)",
         gradientSecond: "hsl(280, 87%, 65%)",
       },

@@ -3,8 +3,8 @@ import TaskSummary from "./TaskSummary";
 import { Reorder, useDragControls } from "framer-motion";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store/store";
-import { setTask } from "../store/taskSlice";
+import { selectFilteredTasks, setTask } from "../store/taskSlice";
+import NoTask from "./NoTask";
 
 // const tasksArr = [
 //   { task: "Complete frontend project", completed: false },
@@ -14,9 +14,7 @@ import { setTask } from "../store/taskSlice";
 //   { task: "Practice CSS animations", completed: false },
 // ];
 export default function TaskList() {
-  const tasksArr = useSelector((state: RootState) => state.task.task);
-  const tasks =
-    tasksArr.length > 0 ? tasksArr : [{ taskName: "Add a task", id: 0 }];
+  const tasksArr = useSelector(selectFilteredTasks);
 
   const dispatch = useDispatch();
   const controls = useDragControls();
@@ -32,21 +30,23 @@ export default function TaskList() {
       ref={constraintsRef}
       className="w-full shadow-2xl divide-y-[0.5px] rounded-md bg-lightVeryLight dark:bg-darkVeryDesaturatedBlue divide-darkVeryBlue dark:divide-darkGrayishBlue "
     >
-      <Reorder.Group
-        axis="y"
-        values={tasksArr}
-        onReorder={(task) => dispatch(setTask(task))}
-        dragControls={controls}
-        drag={tasks.some((task) => task.id === 1)}
-        dragConstraints={constraintsRef}
-        dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
-        dragElastic={0.5}
-        className="w-full divide-y-[0.5px] divide-darkVeryBlue dark:divide-darkGrayishBlue"
-      >
-        {tasks.map((task) => (
-          <TaskItem key={task.id} task={task} />
-        ))}
-      </Reorder.Group>
+      {tasksArr.length < 1 ? (
+        <NoTask />
+      ) : (
+        <Reorder.Group
+          axis="y"
+          values={tasksArr}
+          onReorder={(task) => dispatch(setTask(task))}
+          dragControls={controls}
+          drag
+          dragConstraints={constraintsRef}
+          className="w-full divide-y-[0.5px] divide-darkVeryBlue dark:divide-darkGrayishBlue"
+        >
+          {tasksArr.map((task) => (
+            <TaskItem key={task.id} task={task} />
+          ))}
+        </Reorder.Group>
+      )}
       <TaskSummary />
     </div>
   );
