@@ -62,3 +62,7 @@
 .active {
   color: hsl(220, 98%, 61%);
 }
+
+.wrap {
+  word-break: break-all;
+}

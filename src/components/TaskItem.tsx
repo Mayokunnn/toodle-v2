@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../store/taskSlice";
 import Checkbox from "./Checkbox";
+import toast from "react-hot-toast";
 
 interface TaskType {
   taskName: string;
@@ -24,12 +25,12 @@ function TaskItem({ task }: taskProps) {
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
       value={task}
-      className="cursor-pointer h-14 px-3 w-full rounded-sm  bg-lightVeryLight dark:bg-darkVeryDesaturatedBlue hover:bg-lightVeryGrayishBlue dark:hover:bg-darkVeryBlue flex items-center gap-4"
+      className="wrap cursor-pointer h-14 max-h-28 px-3 max-w-full rounded-sm  bg-lightVeryLight dark:bg-darkVeryDesaturatedBlue hover:bg-lightVeryGrayishBlue dark:hover:bg-darkVeryBlue flex items-center gap-4"
     >
       <Checkbox task={task} />
       <div className="flex items-center justify-between w-full">
         <p
-          className={`text-sm sm:text-md  ${
+          className={` text-sm sm:text-md break-normal ${
             task.completed
               ? "line-through dark:text-darkVeryGrayishBlue text-lightDarkGrayishBlue"
               : " dark:text-darkLightGrayishBlue text-darkVeryDesaturatedBlue"
@@ -39,7 +40,10 @@ function TaskItem({ task }: taskProps) {
         </p>
         {isHovered && (
           <span
-            onClick={() => dispatch(deleteTask(task.id))}
+            onClick={() => {
+              toast.success("Task deleted successfully");
+              dispatch(deleteTask(task.id));
+            }}
             className="px-5 text-2xl text-lightVeryDarkGrayishBlue dark:text-darkLightGrayishBlue"
           >
             &times;

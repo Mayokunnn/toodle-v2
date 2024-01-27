@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFilteredTasks, setTask } from "../store/taskSlice";
 import NoTask from "./NoTask";
+import toast from "react-hot-toast";
 
 // const tasksArr = [
 //   { task: "Complete frontend project", completed: false },
@@ -36,7 +37,10 @@ export default function TaskList() {
         <Reorder.Group
           axis="y"
           values={tasksArr}
-          onReorder={(task) => dispatch(setTask(task))}
+          onReorder={(task) => {
+            toast.success("Task moved successfully");
+            dispatch(setTask(task));
+          }}
           dragControls={controls}
           drag
           dragConstraints={constraintsRef}

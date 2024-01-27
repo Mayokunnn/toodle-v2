@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTask, setFilter } from "../store/taskSlice";
+import toast from "react-hot-toast";
 
 function TodoInput() {
   const [taskName, setTaskName] = useState("");
@@ -27,6 +28,7 @@ function TodoInput() {
     };
     dispatch(addTask(task));
     dispatch(setFilter("all"));
+    toast.success("Task added successfully");
     setTaskName("");
   }
 

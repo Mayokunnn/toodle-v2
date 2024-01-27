@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { clearCompletedTasks, setFilter } from "../store/taskSlice";
+import toast from "react-hot-toast";
 
 const filters = ["all", "active", "completed"];
 
@@ -39,7 +40,10 @@ export default function TaskSummary() {
         })}
       </div>
       <span
-        onClick={() => dispatch(clearCompletedTasks())}
+        onClick={() => {
+          toast.success("Completed tasks cleared successfully");
+          dispatch(clearCompletedTasks());
+        }}
         className="text-xs sm:text-md text-darkVeryDesaturatedBlue dark:text-darkLightGrayishBlue cursor-pointer hover:text-brightBlue dark:hover:text-brightBlue"
       >
         Clear completed
